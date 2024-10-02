@@ -14,6 +14,14 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-VoiceRecorder-VoiceRecorderTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-VoiceRecorder-VoiceRecorderTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		D98B3C3711354BD69379513E /* GothamRounded-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7BE98E17B0A146869378CBF2 /* GothamRounded-Bold.otf */; };
+		B83DC2A2249241B88D0A2B0F /* GothamRounded-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D387ACCC5DD348D082F73FBE /* GothamRounded-BoldItalic.otf */; };
+		A3FD37DF819042068A025EB9 /* GothamRounded-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = 766C9D578EC64D6A99C6FA31 /* GothamRounded-Book.otf */; };
+		264D8A25E6A443E6A6307F33 /* GothamRounded-BookItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2F48A29646C243909BDD399C /* GothamRounded-BookItalic.otf */; };
+		352A335A0CFC430881C74289 /* GothamRounded-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = AF930FBBAB7B40ADB229BE17 /* GothamRounded-Light.otf */; };
+		8795680BB13943B7A74F24FF /* GothamRounded-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = FD5A82EA8DDC498FBA45ECB4 /* GothamRounded-LightItalic.otf */; };
+		6599330A6CE846509D83C4A2 /* GothamRounded-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = FAF296AC872D46339E2E764B /* GothamRounded-Medium.otf */; };
+		C317E38BAF2F4EEDADBE3747 /* GothamRounded-MediumItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = CA6ED5E5B5FD40C2984D5FD0 /* GothamRounded-MediumItalic.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +53,14 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = VoiceRecorder/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-VoiceRecorder-VoiceRecorderTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoiceRecorder-VoiceRecorderTests.release.xcconfig"; path = "Target Support Files/Pods-VoiceRecorder-VoiceRecorderTests/Pods-VoiceRecorder-VoiceRecorderTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		7BE98E17B0A146869378CBF2 /* GothamRounded-Bold.otf */ = {isa = PBXFileReference; name = "GothamRounded-Bold.otf"; path = "../assets/fonts/GothamRounded-Bold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D387ACCC5DD348D082F73FBE /* GothamRounded-BoldItalic.otf */ = {isa = PBXFileReference; name = "GothamRounded-BoldItalic.otf"; path = "../assets/fonts/GothamRounded-BoldItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		766C9D578EC64D6A99C6FA31 /* GothamRounded-Book.otf */ = {isa = PBXFileReference; name = "GothamRounded-Book.otf"; path = "../assets/fonts/GothamRounded-Book.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		2F48A29646C243909BDD399C /* GothamRounded-BookItalic.otf */ = {isa = PBXFileReference; name = "GothamRounded-BookItalic.otf"; path = "../assets/fonts/GothamRounded-BookItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		AF930FBBAB7B40ADB229BE17 /* GothamRounded-Light.otf */ = {isa = PBXFileReference; name = "GothamRounded-Light.otf"; path = "../assets/fonts/GothamRounded-Light.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		FD5A82EA8DDC498FBA45ECB4 /* GothamRounded-LightItalic.otf */ = {isa = PBXFileReference; name = "GothamRounded-LightItalic.otf"; path = "../assets/fonts/GothamRounded-LightItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		FAF296AC872D46339E2E764B /* GothamRounded-Medium.otf */ = {isa = PBXFileReference; name = "GothamRounded-Medium.otf"; path = "../assets/fonts/GothamRounded-Medium.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		CA6ED5E5B5FD40C2984D5FD0 /* GothamRounded-MediumItalic.otf */ = {isa = PBXFileReference; name = "GothamRounded-MediumItalic.otf"; path = "../assets/fonts/GothamRounded-MediumItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +140,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				6637F666FEF2497F9E2C2939 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -149,6 +166,22 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
+		};
+		6637F666FEF2497F9E2C2939 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				7BE98E17B0A146869378CBF2 /* GothamRounded-Bold.otf */,
+				D387ACCC5DD348D082F73FBE /* GothamRounded-BoldItalic.otf */,
+				766C9D578EC64D6A99C6FA31 /* GothamRounded-Book.otf */,
+				2F48A29646C243909BDD399C /* GothamRounded-BookItalic.otf */,
+				AF930FBBAB7B40ADB229BE17 /* GothamRounded-Light.otf */,
+				FD5A82EA8DDC498FBA45ECB4 /* GothamRounded-LightItalic.otf */,
+				FAF296AC872D46339E2E764B /* GothamRounded-Medium.otf */,
+				CA6ED5E5B5FD40C2984D5FD0 /* GothamRounded-MediumItalic.otf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -245,6 +278,14 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				D98B3C3711354BD69379513E /* GothamRounded-Bold.otf in Resources */,
+				B83DC2A2249241B88D0A2B0F /* GothamRounded-BoldItalic.otf in Resources */,
+				A3FD37DF819042068A025EB9 /* GothamRounded-Book.otf in Resources */,
+				264D8A25E6A443E6A6307F33 /* GothamRounded-BookItalic.otf in Resources */,
+				352A335A0CFC430881C74289 /* GothamRounded-Light.otf in Resources */,
+				8795680BB13943B7A74F24FF /* GothamRounded-LightItalic.otf in Resources */,
+				6599330A6CE846509D83C4A2 /* GothamRounded-Medium.otf in Resources */,
+				C317E38BAF2F4EEDADBE3747 /* GothamRounded-MediumItalic.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

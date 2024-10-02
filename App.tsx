@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, PermissionsAndroid, Platform, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, PermissionsAndroid, Platform, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import AudioRecorderPlayer from 'react-native-audio-recorder-player';
 import RNFS from 'react-native-fs';
 import WaveAnimation from './screens/waveform';
@@ -99,6 +99,10 @@ const App = () => {
   return (
     <View style={styles.container}>
       <WaveAnimation isRecording={recording} audioLevel={audioLevel} />
+      <Image
+        source={require('./assets/images/icon.png')} // Adjust the path according to your project structure
+        style={styles.image}
+      />
       <Text style={styles.title}>{recording ? 'Recording...' : 'Press to Record'}</Text>
       <TouchableOpacity
         style={[styles.button, recording ? styles.stopButton : styles.recordButton]}
@@ -134,6 +138,11 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     fontWeight: 'bold',
     color: '#fff',
+  },
+  image: {
+    width: 150, // Set your desired width
+    height: 300, // Set your desired height
+    marginBottom: 20, // Space between image and title
   },
   button: {
     flexDirection: 'row',
