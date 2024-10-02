@@ -1,117 +1,168 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import React, { useState, useEffect } from 'react';
+import { View, Text, PermissionsAndroid, Platform, StyleSheet, TouchableOpacity } from 'react-native';
+import AudioRecorderPlayer from 'react-native-audio-recorder-player';
+import RNFS from 'react-native-fs';
+import WaveAnimation from './screens/waveform';
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+const audioRecorderPlayer = new AudioRecorderPlayer();
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+const App = () => {
+  const [recording, setRecording] = useState(false);
+  const [playing, setPlaying] = useState(false);
+  const [uri, setUri] = useState('');
+  const [audioLevel, setAudioLevel] = useState(0);
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
+  useEffect(() => {
+    const requestPermissions = async () => {
+      if (Platform.OS === 'android') {
+        const granted = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.RECORD_AUDIO,
           {
-            color: isDarkMode ? Colors.white : Colors.black,
+            title: 'Microphone Permission',
+            message: 'This app needs access to your microphone to record audio.',
+            buttonNeutral: 'Ask Me Later',
+            buttonNegative: 'Cancel',
+            buttonPositive: 'OK',
           },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
+        );
+        return granted === PermissionsAndroid.RESULTS.GRANTED;
+      }
+      return true;
+    };
 
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+    requestPermissions();
+  }, []);
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  const generateDynamicFileName = (baseFileName: string) => {
+    return `${baseFileName}_${new Date().getTime()}.mp4`;
+  };
+
+  const startRecording = async () => {
+    const path = Platform.OS === 'android'
+      ? `${RNFS.DownloadDirectoryPath}/${generateDynamicFileName('myRecording')}`
+      : `${RNFS.DocumentDirectoryPath}/${generateDynamicFileName('myRecording')}`;
+
+    try {
+      await audioRecorderPlayer.startRecorder(path);
+      setRecording(true);
+      setUri('');
+
+      setInterval(() => {
+        setAudioLevel(Math.random() * 100);
+      }, 100);
+
+      console.log('Audio is recording...');
+    } catch (error) {
+      console.error('Failed to start recording:', error);
+    }
+  };
+
+  const stopRecording = async () => {
+    try {
+      const result = await audioRecorderPlayer.stopRecorder();
+      setRecording(false);
+      setUri(result);
+      console.log('Recording stopped and saved at:', result);
+    } catch (error) {
+      console.error('Failed to stop recording:', error);
+    }
+  };
+
+  const startPlaying = async () => {
+    if (!uri) { return; }
+
+    try {
+      setPlaying(true);
+      await audioRecorderPlayer.startPlayer(uri);
+
+      audioRecorderPlayer.addPlayBackListener((e) => {
+        if (e.currentPosition === e.duration) {
+          setPlaying(false);
+          audioRecorderPlayer.removePlayBackListener();
+        }
+      });
+    } catch (error) {
+      console.error('Failed to start playing:', error);
+    }
+  };
+
+  const stopPlaying = async () => {
+    try {
+      await audioRecorderPlayer.stopPlayer();
+      setPlaying(false);
+      audioRecorderPlayer.removePlayBackListener();
+    } catch (error) {
+      console.error('Failed to stop playing:', error);
+    }
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <View style={styles.container}>
+      <WaveAnimation isRecording={recording} audioLevel={audioLevel} />
+      <Text style={styles.title}>{recording ? 'Recording...' : 'Press to Record'}</Text>
+      <TouchableOpacity
+        style={[styles.button, recording ? styles.stopButton : styles.recordButton]}
+        onPress={recording ? stopRecording : startRecording}
+      >
+        <Text style={styles.buttonText}>{recording ? 'Stop Recording' : 'Start Recording'}</Text>
+      </TouchableOpacity>
+
+      {uri ? (
+        <>
+          <Text style={styles.recordedText}>Recording Ready!</Text>
+          <TouchableOpacity
+            style={[styles.button, playing ? styles.stopButton : styles.playButton]}
+            onPress={playing ? stopPlaying : startPlaying}
+          >
+            <Text style={styles.buttonText}>{playing ? 'Stop Playing' : 'Play Recording'}</Text>
+          </TouchableOpacity>
+        </>
+      ) : null}
+    </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#dd207a',
   },
-  sectionTitle: {
+  title: {
     fontSize: 24,
-    fontWeight: '600',
+    marginBottom: 20,
+    fontWeight: 'bold',
+    color: '#fff',
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
+  button: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20,
+    borderRadius: 10,
+    marginVertical: 10,
+    elevation: 5,
+    width: 250,
   },
-  highlight: {
-    fontWeight: '700',
+  recordButton: {
+    backgroundColor: '#4CAF50',
+  },
+  stopButton: {
+    backgroundColor: '#F44336',
+  },
+  playButton: {
+    backgroundColor: '#2196F3',
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  recordedText: {
+    marginTop: 20,
+    fontSize: 16,
+    color: '#fff',
   },
 });
 
